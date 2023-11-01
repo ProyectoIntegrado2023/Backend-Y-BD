@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,18 +29,21 @@ public class ControllerEncargado {
 
 
     @GetMapping("/list")
+    @PreAuthorize("hasAnyRole('ADMIN','DIRECTOR','COORDINADOR','ESTUDIANTE','DOCENTE')")
     public List<EncargadoDTO> getAll(){
         return serviceImplEncargado.getAll();
         
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','DIRECTOR','COORDINADOR','ESTUDIANTE','DOCENTE')")
     public EncargadoDTO get(@PathVariable int id){
         return serviceImplEncargado.getById(id);
     }
 
 
     @PostMapping("/agregar")
+    @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public EncargadoDTO create(@RequestBody EncargadoDTO encargadoDTO ){
 
 
@@ -47,12 +51,14 @@ public class ControllerEncargado {
     }
 
     @PutMapping("/editar/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public EncargadoDTO editarEs(@PathVariable int id, @RequestBody EncargadoDTO encargadoDTO ){
 
         return serviceImplEncargado.update(id, encargadoDTO);
     }
 
     @DeleteMapping("/eliminar/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public void eliminar(@PathVariable int id){
         serviceImplEncargado.delete(id);
     }

@@ -9,7 +9,7 @@ public class Rol_SistemaMapper {
        Rol_SistemaDTO rol_SistemaDTO = new Rol_SistemaDTO();
 
        rol_SistemaDTO.setID_ROL_SISTEMA(rol_Sistema.getID_ROL_SISTEMA());
-       rol_SistemaDTO.setNOMBRE(rol_Sistema.getNOMBRE()); 
+    //    rol_SistemaDTO.setNOMBRE(rol_Sistema.getNOMBRE()); 
 
 
         return rol_SistemaDTO;
@@ -21,7 +21,7 @@ public class Rol_SistemaMapper {
 
         Rol_Sistema rol_Sistema = new Rol_Sistema();
         rol_Sistema.setID_ROL_SISTEMA(rol_SistemaDTO.getID_ROL_SISTEMA());
-        rol_Sistema.setNOMBRE(rol_SistemaDTO.getNOMBRE());
+        // rol_Sistema.setNOMBRE(rol_SistemaDTO.getNOMBRE());
 
         return rol_Sistema;
 

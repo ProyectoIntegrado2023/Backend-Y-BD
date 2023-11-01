@@ -892,11 +892,11 @@ INSERT INTO DOCENTE VALUES (30, 30, 'Activo');
 
 //----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO USUARIO VALUES (1, 'USERNAME1','PASSOWORD1',1, 'Activo');
-INSERT INTO USUARIO VALUES (2, 'USERNAME2','PASSOWORD2',2, 'Activo');
-INSERT INTO USUARIO VALUES (3, 'USERNAME3','PASSOWORD3',3, 'Activo');
-INSERT INTO USUARIO VALUES (4, 'USERNAME4','PASSOWORD4',4, 'Activo');
-INSERT INTO USUARIO VALUES (5, 'USERNAME5','PASSOWORD5',5, 'Activo');
+INSERT INTO USUARIO VALUES (1, 'admin','$2a$10$ul09ntdhcw7jFnuZszFORuUF0YPPqS2yRLDWJPoyKmBnr7PTBUWyO',1, 'Activo');
+INSERT INTO USUARIO VALUES (2, 'estudiante','$2a$10$wokwoJb4vB6WlEhgLtlKReOqjUFBAiJDo9PIslIsgOMfUezpXs1bW',2, 'Activo');
+INSERT INTO USUARIO VALUES (3, 'coordinador','$2a$10$M14qT3Zr0RTuqKOjTQSIUOtJ4QeiWnQy9Wr0FL0RLxc5ZD6KbJeIK',3, 'Activo');
+INSERT INTO USUARIO VALUES (4, 'docente','$2a$10$4VHUtArfFVcuAMW.XVZzaehfFVqV0GZuJxBozdrssbaE7LB7rm54i',4, 'Activo');
+INSERT INTO USUARIO VALUES (5, 'director','$2a$10$DkEf1O2ARnCfrNVGBQiX0OVZkKBXGYtcMfMtMctUUIdHqVTyeEwPC',5, 'Activo');
 INSERT INTO USUARIO VALUES (6, 'USERNAME6','PASSOWORD6',6, 'Activo');
 INSERT INTO USUARIO VALUES (7, 'USERNAME7','PASSOWORD7',7, 'Activo');
 INSERT INTO USUARIO VALUES (8, 'USERNAME8','PASSOWORD8',8, 'Activo');

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,11 +26,13 @@ public class ControllerEscuela {
         private ServiceImplEscuela serviceImplEscuela;
 
     @GetMapping("/list")
+     @PreAuthorize("hasAnyRole('ADMIN','DIRECTOR','COORDINADOR','ESTUDIANTE','DOCENTE')")
     public List<EscuelaDTO> getAllEscuela() {
         return serviceImplEscuela.getAllEscuela();
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','DIRECTOR','COORDINADOR','ESTUDIANTE','DOCENTE')")
     public EscuelaDTO getEscuela(@PathVariable int id) {
         return serviceImplEscuela.getEscuelaById(id);
     }
@@ -37,18 +40,21 @@ public class ControllerEscuela {
 
       
     @PostMapping("/agregar")
+    @PreAuthorize("hasRole('ADMIN')")
     public EscuelaDTO createEscuela(@RequestBody EscuelaDTO escuelaDTO) {
     return serviceImplEscuela.createEscuela(escuelaDTO);
     }
 
 
     @PutMapping("/editar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public EscuelaDTO updateEscuela(@PathVariable int id, @RequestBody EscuelaDTO escuelaDTO) {
         return serviceImplEscuela.updateEscuela(id, escuelaDTO);
     }
 
 
      @DeleteMapping("/eliminar/{id}")
+     @PreAuthorize("hasRole('ADMIN')")
     public void deleteEscuela(@PathVariable int id) {
         serviceImplEscuela.deleteEscuela(id);
         

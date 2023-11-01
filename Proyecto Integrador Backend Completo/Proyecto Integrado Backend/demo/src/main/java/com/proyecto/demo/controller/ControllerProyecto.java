@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,18 +30,20 @@ public class ControllerProyecto {
         private ServiceimplProyecto proyectoService;
 
     
-
-    @GetMapping("/list")
+        @GetMapping("/list")
+        @PreAuthorize("hasAnyRole('ADMIN','DIRECTOR','COORDINADOR','ESTUDIANTE','DOCENTE')")
     public List<ProyectoDTO> getAllProyectos() {
         return proyectoService.getAllProyectos();
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','DIRECTOR','COORDINADOR','ESTUDIANTE','DOCENTE')")
     public ProyectoDTO getProyecto(@PathVariable int id) {
         return proyectoService.getProyectoById(id);
     }
 
     @PostMapping("/agregar")
+      @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public ProyectoDTO createProyecto(@RequestBody ProyectoDTO proyectoDTO) {
 
 
@@ -49,6 +52,7 @@ public class ControllerProyecto {
     }
 
     @PutMapping("/editar/{id}")
+     @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public ProyectoDTO updateProyecto(@PathVariable int id, @RequestBody ProyectoDTO proyectoDTO) {
         return proyectoService.updateProyecto(id, proyectoDTO);
     }
@@ -60,6 +64,7 @@ public class ControllerProyecto {
     }
 
     @GetMapping("/nombre")
+    @PreAuthorize("hasAnyRole('ADMIN','DIRECTOR','COORDINADOR','ESTUDIANTE','DOCENTE')")
     public ResponseEntity<List<ProyectoDTO>> buscarProyectosPorNombre(@RequestParam String nombre) {
     List<ProyectoDTO> proyectos = proyectoService.getProyectosPorNombre(nombre);
     return new ResponseEntity<>(proyectos, HttpStatus.OK);

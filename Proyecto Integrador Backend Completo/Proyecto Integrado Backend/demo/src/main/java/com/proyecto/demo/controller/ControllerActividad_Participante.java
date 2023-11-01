@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,18 +32,21 @@ public class ControllerActividad_Participante {
 
 
     @GetMapping("/list")
+    @PreAuthorize("hasAnyRole('ADMIN','DIRECTOR','COORDINADOR','ESTUDIANTE','DOCENTE')")
     public List<Actividad_ParticipanteDTO> getAll(){
         return serviceImplActividad_Participante.getAll();
         
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','DIRECTOR','COORDINADOR','ESTUDIANTE','DOCENTE')")
     public Actividad_ParticipanteDTO get(@PathVariable int id){
         return serviceImplActividad_Participante.getById(id);
     }
 
 
     @PostMapping("/agregar")
+    @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public Actividad_ParticipanteDTO create(@RequestBody Actividad_ParticipanteDTO actividad_participanteDTO ){
 
 
@@ -50,12 +54,14 @@ public class ControllerActividad_Participante {
     }
 
     @PutMapping("/editar/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public Actividad_ParticipanteDTO editarEs(@PathVariable int id, @RequestBody Actividad_ParticipanteDTO actividad_participanteDTO ){
 
         return serviceImplActividad_Participante.update(id, actividad_participanteDTO);
     }
 
     @DeleteMapping("/eliminar/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','COORDINADOR')")
     public void eliminar(@PathVariable int id){
         serviceImplActividad_Participante.delete(id);
     }

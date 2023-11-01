@@ -499,4 +499,19 @@ END;
 
 ---------------------------
 
+
+CREATE SEQUENCE usuario_rol_sistema_id_seq START WITH 1 INCREMENT BY 1;
+
+
+
+CREATE OR REPLACE TRIGGER usuario_rol_sistema_id_trigger
+BEFORE INSERT ON USUARIO_ROL_SISTEMA
+FOR EACH ROW
+BEGIN
+  -- Verificar si el valor del ID_PROYECTO es NULL o no se ha proporcionado
+  IF :NEW.ID_USUARIO_ROL_SISTEMA IS NULL THEN
+    SELECT usuario_rol_sistema_id_seq.NEXTVAL INTO :NEW.ID_USUARIO_ROL_SISTEMA FROM dual;
+  END IF;
+END;
+
 COMMIT;

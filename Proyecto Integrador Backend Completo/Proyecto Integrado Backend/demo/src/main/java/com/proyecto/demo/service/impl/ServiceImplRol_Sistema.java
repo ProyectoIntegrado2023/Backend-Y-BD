@@ -52,7 +52,7 @@ public class ServiceImplRol_Sistema implements ServiceRol_Sistema {
         .orElseThrow(() -> new PropertyNotFoundException("Rol_Sistema no encontrado"));
 
 // Actualiza los campos del proyecto con los datos del DTO
-        existingRol_Sistema.setNOMBRE(rol_SistemaDTO.getNOMBRE());
+        // existingRol_Sistema.setNOMBRE(rol_SistemaDTO.getNOMBRE());
 
 
 

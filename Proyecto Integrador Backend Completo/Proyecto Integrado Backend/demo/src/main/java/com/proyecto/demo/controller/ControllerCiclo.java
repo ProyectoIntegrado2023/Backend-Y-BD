@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,18 +29,21 @@ public class ControllerCiclo {
     
 
     @GetMapping("/list")
+    @PreAuthorize("hasAnyRole('ADMIN','DIRECTOR','COORDINADOR','ESTUDIANTE','DOCENTE')")
     public List<CicloDTO> getAllCiclo(){
         return serviceCiclo.getAllCiclo();
         
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','DIRECTOR','COORDINADOR','ESTUDIANTE','DOCENTE')")
     public CicloDTO getCiclo(@PathVariable int id){
         return serviceCiclo.getCicloById(id);
     }
 
 
     @PostMapping("/agregar")
+    @PreAuthorize("hasRole('ADMIN')")
     public CicloDTO createCiclo(@RequestBody CicloDTO cicloDTO ){
 
 
@@ -47,12 +51,14 @@ public class ControllerCiclo {
     }
 
     @PutMapping("/editar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public CicloDTO editarEs(@PathVariable int id, @RequestBody CicloDTO cicloDTO ){
 
         return serviceCiclo.updateCiclo(id, cicloDTO);
     }
 
     @DeleteMapping("/eliminar/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void eliminar(@PathVariable int id){
         serviceCiclo.deletCicloo(id);
     }
