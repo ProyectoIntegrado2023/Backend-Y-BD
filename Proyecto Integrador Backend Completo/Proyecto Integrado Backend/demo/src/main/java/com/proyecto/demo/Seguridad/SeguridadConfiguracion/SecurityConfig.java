@@ -44,11 +44,14 @@ public class SecurityConfig {
 
 
         return httpSecurity
+        .cors()
+        .and()
                             .csrf(
                                 config -> config.disable()
                             )
                             .authorizeHttpRequests(
                                 auth -> {
+                                  auth.requestMatchers("/login");
                                     auth.anyRequest().authenticated();
                                 }
                             )
@@ -66,15 +69,6 @@ public class SecurityConfig {
 
     }
 
-    // @Bean
-    // UserDetailsService userDetailsService(){
-    //     InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-    //     manager.createUser(User.withUsername("alexis")
-    //             .password("1234")
-    //             .roles()
-    //             .build());
-    //     return manager;
-    // }
 
     @Bean
     PasswordEncoder passwordEncoder(){
