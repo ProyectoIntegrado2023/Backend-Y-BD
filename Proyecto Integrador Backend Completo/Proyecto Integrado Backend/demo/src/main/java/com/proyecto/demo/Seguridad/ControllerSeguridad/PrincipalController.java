@@ -36,7 +36,7 @@ public class PrincipalController {
 
 
     @PostMapping("/crear")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<?> createUser(@Valid @RequestBody  CreateUserDTO createUserDTO){
 
         Set<Rol_Sistema> roles = createUserDTO.getRoles().stream()
