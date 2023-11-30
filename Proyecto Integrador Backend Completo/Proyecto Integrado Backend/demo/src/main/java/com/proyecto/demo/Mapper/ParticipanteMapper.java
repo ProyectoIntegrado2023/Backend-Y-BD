@@ -73,7 +73,7 @@ public class ParticipanteMapper {
 
 
           Rol_Proyecto_Encargado rol_proyecto_encargado = participante.getRol_proyecto_encargado();
-        if (persona != null) {
+        if (rol_proyecto_encargado != null) {
             Rol_Proyecto_EncargadoDTO rol_proyecto_encargadoDTO = Rol_Proyecto_EncargadoMapper.DatosAlDTO(rol_proyecto_encargado);
             participanteDTO.setID_ROL_PROYECTO_ENCARGADO(rol_proyecto_encargadoDTO);}
 
@@ -133,29 +133,31 @@ public class ParticipanteMapper {
 
 
 
-   //--------------------------------------------------------------------- Docente
-        DocenteDTO docenteDTO = participanteDTO.getID_DOCENTE();
-        Docente docente = (docenteDTO != null) ? DocenteMapper.DatosAlaEdentidad(docenteDTO) : null;
-        participante.setDocente(docente);
-
-
-
-   //--------------------------------------------------------------------- Estudiante
+        
+        
+        
+        //--------------------------------------------------------------------- Estudiante
         EstudianteDTO estudianteDTO = participanteDTO.getID_ESTUDIANTE();
         Estudiante estudiante = (estudianteDTO != null) ? EstudianteMapper.DatosAlaEdentidad(estudianteDTO) : null;
         participante.setEstudiante(estudiante);
-
-
-   //--------------------------------------------------------------------- Persona
+        
+        
+        //--------------------------------------------------------------------- Persona
         PersonaDTO personaDTO = participanteDTO.getID_PERSONA();
         Persona persona = (personaDTO != null) ? PersonaMapper.DatosAlaEdentidad(personaDTO) : null;
         participante.setPersona(persona);
+        
+        //--------------------------------------------------------------------- Docente
+             DocenteDTO docenteDTO = participanteDTO.getID_DOCENTE();
+             Docente docente = (docenteDTO != null) ? DocenteMapper.DatosAlaEdentidad(docenteDTO) : null;
+             participante.setDocente(docente);
+        
+
+      Rol_Proyecto_EncargadoDTO rol_Proyecto_EncargadoDTO = participanteDTO.getID_ROL_PROYECTO_ENCARGADO();
+      Rol_Proyecto_Encargado rol_Proyecto_Encargado = (rol_Proyecto_EncargadoDTO != null) ? Rol_Proyecto_EncargadoMapper.DatosAlaEdentidad(rol_Proyecto_EncargadoDTO) : null;
+      participante.setRol_proyecto_encargado(rol_Proyecto_Encargado);
 
 
-   //--------------------------------------------------------------------- ID_ROL_PROYECTO_ENCARGADO
-        Rol_Proyecto_EncargadoDTO rol_Proyecto_EncargadoDTO = participanteDTO.getID_ROL_PROYECTO_ENCARGADO();
-        Rol_Proyecto_Encargado rol_Proyecto_Encargado = (rol_Proyecto_EncargadoDTO != null) ? Rol_Proyecto_EncargadoMapper.DatosAlaEdentidad(rol_Proyecto_EncargadoDTO) : null;
-        participante.setRol_proyecto_encargado(rol_Proyecto_Encargado);
 
 
    //--------------------------------------------------------------------- Proyecto
