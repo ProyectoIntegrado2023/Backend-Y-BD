@@ -1,278 +1,4 @@
---Creacion de Tablas con sus Atributos
---Son 26 tablas hoy creacion 26/10/23
 
-CREATE TABLE PROYECTO (
-    id_PROYECTO number,
-    NOMBRE VARCHAR2(200),
-    CODIGO VARCHAR2(200),
-    COORDINADOR VARCHAR2(200),
-    FECHA_INICIO DATE,
-    FECHA_FIN DATE,
-    OBJETIVOS VARCHAR2(1000),
-    DESCRIPCION VARCHAR2(2000),
-    PRESUPUESTO NUMBER,
-    INFORME_FINAL VARCHAR2(200),
-    id_TIPO_CONVENIO number,
-    id_SEMESTRE number,
-    id_ESTADO number,
-    id_CICLO number, 
-    id_ESCUELA number,
-    id_CURSO_ARTICULADO number,
-    CONSTRAINT nombre_pk PRIMARY KEY (id_PROYECTO)
-);
-
-CREATE TABLE PLANTILLA (
-    id_PLANTILLA number,
-    NOMBRE VARCHAR2(200),
-    ESTADO VARCHAR2(200),
-    URL VARCHAR2(200),
-    id_TIPO_CONVENIO number,
-     
-    CONSTRAINT PLANTILLAPK PRIMARY KEY (id_PLANTILLA)
-);
-
-CREATE TABLE FACULTAD (
-    id_FACULTAD number,
-    NOMBRE VARCHAR2(200),
-    ESTADO VARCHAR2(200),
-    CONSTRAINT FACULTADPK PRIMARY KEY (id_FACULTAD)
-);
-
-CREATE TABLE ESCUELA (
-    id_ESCUELA number,
-    id_FACULTAD number,
-    NOMBRE VARCHAR2(200),
-    ESTADO VARCHAR2(200),
-    CONSTRAINT ESCUELAPK PRIMARY KEY (id_ESCUELA)
-);
-
-CREATE TABLE TIPO_DE_CONVENIO (
-    id_TIPO_DE_CONVENIO number,
-    NOMBRE VARCHAR2(200),
-    ESTADO VARCHAR2(200),
-    CONSTRAINT TIPO_DE_CONVENIOPK PRIMARY KEY (id_TIPO_DE_CONVENIO)
-);
-
-CREATE TABLE CURSO_ARTICULADO (
-    id_CURSO_ARTICULADO number,
-    id_DOCENTE number,
-    id_ESCUELA number,
-    id_PERSONA number,
-    NOMBRE VARCHAR2(200), 
-    ESTADO VARCHAR2(200),
-    CONSTRAINT CURSO_ARTICULADOPK PRIMARY KEY (id_CURSO_ARTICULADO)
-);
-
-CREATE TABLE SEMESTRE (
-    id_SEMESTRE number,
-    NOMBRE VARCHAR2(200),
-    ESTADO VARCHAR2(200),
-    CONSTRAINT SEMESTREPK PRIMARY KEY (id_SEMESTRE)
-);
-
-
-
-CREATE TABLE ROL_SISTEMA (
-    id_ROL_SISTEMA number,
-    NOMBRE VARCHAR2(200),
-    ESTADO VARCHAR2(200),
-     id_ESCUELA number,
-    CONSTRAINT ROL_SISTEMAPK PRIMARY KEY (id_ROL_SISTEMA)
-);
-
-
---FALTA VALORES
-CREATE TABLE ACCESOS (
-    id_ACCESOS number,
-    ID_ACCESOS_PADRE NUMBER,
-    NOMBRE VARCHAR2(200),
-    URL  VARCHAR2(200),
-    ESTADO VARCHAR2(200),
-    CONSTRAINT ACCESOSPK PRIMARY KEY (id_ACCESOS)
-);
-
-
-CREATE TABLE ESTADO (
-    id_ESTADO number,
-    NOMBRE VARCHAR2(200),   
-    CONSTRAINT ESTADOPK PRIMARY KEY (id_ESTADO)
-);
-
-CREATE TABLE ROL_NEGOCIO (
-    id_ROL_NEGOCIO number,
-    NOMBRE VARCHAR2(200),
-    ESTADO VARCHAR2(200),
-    CONSTRAINT ROL_NEGOCIOPK PRIMARY KEY (id_ROL_NEGOCIO)
-);
-
-CREATE TABLE CICLO (
-    id_CICLO number,
-    NOMBRE VARCHAR2(200),
-    ESTADO VARCHAR2(200),
-    id_ESCUELA number,
-    CONSTRAINT CICLOPK PRIMARY KEY (id_CICLO)
-);
-
-
-
-
-CREATE TABLE GRUPO_UNIV (
-    id_GRUPO_UNIV number,
-    NOMBRE VARCHAR2(200),
-    ESTADO VARCHAR2(200),
-    CONSTRAINT GRUPO_UNIVPK PRIMARY KEY (id_GRUPO_UNIV)
-);
-
-CREATE TABLE DOCENTE (
-    id_DOCENTE number,
-    id_PERSONA number,
-    ESTADO VARCHAR2(200),
-    CONSTRAINT DOCENTEPK PRIMARY KEY (id_DOCENTE)
-);
-
-
-CREATE TABLE USUARIO_ACCESOS (
-    id_USUARIO_ACCESOS number,
-    id_USUARIO number,
-    id_ACCESOS number,
-    CONSTRAINT USUARIO_ACCESOSPK PRIMARY KEY (id_USUARIO_ACCESOS)
-);
-
-CREATE TABLE USUARIO (
-    id_USUARIO number,
-    USERNAME VARCHAR2(100),
-    PASSWORD VARCHAR2(100),
-    id_PERSONA number,
-    ESTADO VARCHAR2(200),
-    CONSTRAINT USUARIOPK PRIMARY KEY (id_USUARIO)
-);
-
-CREATE TABLE RECURSO (
-    id_RECURSO number,
-    NOMBRE VARCHAR2(100),
-    URL VARCHAR2(100),
-    ESTADO VARCHAR2(200),
-    id_PROYECTO number,
-    CONSTRAINT RECURSOPK PRIMARY KEY (id_RECURSO)
-);
-
-
-CREATE TABLE ROL_PROYECTO (
-    id_ROL_PROYECTO number,
-    HORA NUMBER,
-    DESCRIPCION VARCHAR2(1000),
-    id_ROL_NEGOCIO number,
-    id_PROYECTO number,
-   ESTADO VARCHAR2(200),
-    
-    CONSTRAINT ROL_PROYECTOPK PRIMARY KEY (id_ROL_PROYECTO)
-);
-
-
-
-CREATE TABLE ROL_PROYECTO_ENCARGADO (
-    id_ROL_PROYECTO_ENCARGADO number,
-    ESTADO VARCHAR2(200),
-    id_ROL_PROYECTO number,
-    id_ENCARGADO number,
-
-    
-    
-    CONSTRAINT ROL_PROYECTO_ENCARGADOPK PRIMARY KEY (id_ROL_PROYECTO_ENCARGADO)
-);
-
-
-
-
-CREATE TABLE ACTIVIDAD_PARTICIPANTE (
-    id_ACTIVIDAD_PARTICIPANTE number,
-    ESTADO VARCHAR2(200),
-    id_ACTIVIDAD NUMBER,
-    id_PARTICIPANTE number,
-   
-    
-    
-    CONSTRAINT ACTIVIDAD_PARTICIPANTEPK PRIMARY KEY (id_ACTIVIDAD_PARTICIPANTE)
-);
-
-
-CREATE TABLE ROL_SISTEMA_ACCESOS (
-    id_ROL_SISTEMA_ACCESOS number,
-    id_ROL_SISTEMA NUMBER,
-    id_ACCESOS number,
-    ESTADO VARCHAR2(200),
-    
-    CONSTRAINT ROL_SISTEMA_ACCESOSPK PRIMARY KEY (id_ROL_SISTEMA_ACCESOS)
-);
-
-
-CREATE TABLE ESTUDIANTE (
-    id_ESTUDIANTE number,
-    id_PERSONA number,
-    CODIGO VARCHAR2(30),
-    HORAS_TOTALES  NUMBER,
-    ESTADO VARCHAR2(200),
-    id_CICLO number,
-    id_GRUPO_UNIV number,
-    
-    
-    CONSTRAINT ESTUDIANTEPK PRIMARY KEY (id_ESTUDIANTE)
-);
-
-
-
-
-CREATE TABLE ENCARGADO (
-    id_ENCARGADO number,
-    NOMBRE VARCHAR2(100),
-    ROL VARCHAR2(100),
-    ESTADO VARCHAR2(200),
-     id_PARTICIPANTE number,  
-    CONSTRAINT ENCARGADOPK PRIMARY KEY (id_ENCARGADO)
-);
-------------------mE QUEDE AQUI
-CREATE TABLE PARTICIPANTE (
-    ESTADO VARCHAR2(200),
-    id_PARTICIPANTE number,
-    id_ROL_SISTEMA number,
-    id_PROYECTO number,
-    id_ESTUDIANTE number,
-    id_PERSONA number,
-    id_ROL_PROYECTO_ENCARGADO number,
-    id_DOCENTE number,
-    CONSTRAINT PARTICIPANTEPK PRIMARY KEY (id_PARTICIPANTE)
-);
-
-
-CREATE TABLE ACTIVIDAD (
-    id_ACTIVIDAD NUMBER,
-    NOMBRE VARCHAR2(100),
-    FECHA DATE,
-    ESTADO VARCHAR2(200),
-    id_PROYECTO NUMBER,
-    id_ENCARGADO NUMBER,
-    
-    CONSTRAINT ACTIVIDADPK PRIMARY KEY (id_ACTIVIDAD)
-
-
-
-);
-
-
-CREATE TABLE PERSONA (
-    id_PERSONA NUMBER,
-    NOMBRE VARCHAR2(100),
-    ESTADO VARCHAR2(200),
-    DNI    VARCHAR2(20),
-    id_ROL_SISTEMA NUMBER,
-
-    CONSTRAINT PERSONAPK PRIMARY KEY (id_PERSONA)
-);
-
-
-
-//--------------------------------------------------------------------------------------------------------------------------------
-//----------------------------Proyecto
 
 
 -- Insertar 10 ejemplos de proyectos en distintos campos académicos
@@ -579,7 +305,7 @@ INSERT INTO PROYECTO VALUES
 
 INSERT INTO PROYECTO VALUES
   (100, 'Proyecto Agricultura Sustentable', 'PROG100', 'Roberto Martínez', TO_DATE('2024-04-29', 'YYYY-MM-DD'), TO_DATE('2024-12-31', 'YYYY-MM-DD'), 'Cultivo sustentable de alimentos', 'Métodos agrícolas respetuosos del medio ambiente', 17000, 'Informe de agricultura sustentable', 10, 7, 1, 9, 20, 36);
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -616,7 +342,7 @@ INSERT INTO PLANTILLA VALUES (10, 'Plantilla Derecho', 'Activo', 'URL10', 10);
 
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO FACULTAD VALUES (1, 'FACULTAD DE CIENCIAS HUMANAS Y EDUCACION', 'Activo' );
 
@@ -629,7 +355,7 @@ INSERT INTO FACULTAD VALUES (4, 'FACULTAD DE TEOLOGIA', 'Activo' );
 INSERT INTO FACULTAD VALUES (5, 'FACULTAD DE CIENCIAS EMPRESARIALES', 'Activo' );
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 INSERT INTO ESCUELA VALUES (1,1, 'EP EDUCACION : ESPECIALIDAD PRIMARIA', 'Activo' );
@@ -661,7 +387,7 @@ INSERT INTO ESCUELA VALUES (21,5, 'EP Contabilidad y Gestion Tributaria', 'Activ
 INSERT INTO ESCUELA VALUES (22,5, 'EP Marketing y Negocios Internacionales', 'Activo' );
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO TIPO_De_CONVENIO VALUES (1, 'CONVENIO1', 'Activo' );
 INSERT INTO TIPO_De_CONVENIO VALUES (2, 'CONVENIO2', 'Activo' );
@@ -675,7 +401,7 @@ INSERT INTO TIPO_De_CONVENIO VALUES (9, 'CONVENIO9', 'Activo' );
 INSERT INTO TIPO_De_CONVENIO VALUES (10, 'CONVENIO10', 'Activo' );
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -781,7 +507,7 @@ INSERT INTO CURSO_ARTICULADO (id_CURSO_ARTICULADO, id_DOCENTE, id_ESCUELA, id_PE
 
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 INSERT INTO SEMESTRE VALUES (1, '2020-1', 'Activo');
@@ -796,7 +522,7 @@ INSERT INTO SEMESTRE VALUES (9, '2024-1', 'Activo');
 INSERT INTO SEMESTRE VALUES (10, '2024-2', 'Activo');
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 INSERT INTO ESTADO VALUES (1, 'ESTADO1');
@@ -805,7 +531,7 @@ INSERT INTO ESTADO VALUES (3, 'ESTADO3');
 
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 INSERT INTO ROL_NEGOCIO VALUES (1, 'Lider', 'Activo');
@@ -819,7 +545,7 @@ INSERT INTO ROL_NEGOCIO VALUES (8, 'DE YAPA', 'Activo');
 INSERT INTO ROL_NEGOCIO VALUES (9, 'NOTA ES NOTA', 'Activo');
 INSERT INTO ROL_NEGOCIO VALUES (10, 'DISEÑADOR', 'Activo');
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 INSERT INTO CICLO VALUES (1, '1', 'Activo',1);
@@ -835,7 +561,7 @@ INSERT INTO CICLO VALUES (10, '10', 'Activo',1);
 INSERT INTO CICLO VALUES (11, '11', 'Activo',1);
 INSERT INTO CICLO VALUES (12, '12', 'Activo',1);
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO GRUPO_UNIV VALUES (1, '1', 'Activo');
 INSERT INTO GRUPO_UNIV VALUES (2, '2', 'Activo');
@@ -848,7 +574,7 @@ INSERT INTO GRUPO_UNIV VALUES (8, '8', 'Activo');
 INSERT INTO GRUPO_UNIV VALUES (9, '9', 'Activo');
 INSERT INTO GRUPO_UNIV VALUES (10, '10', 'Activo');
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 INSERT INTO DOCENTE VALUES (1, 1, 'Activo');
@@ -890,7 +616,7 @@ INSERT INTO DOCENTE VALUES (30, 30, 'Activo');
 
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO USUARIO VALUES (1, 'admin','$2a$10$ul09ntdhcw7jFnuZszFORuUF0YPPqS2yRLDWJPoyKmBnr7PTBUWyO',1, 'Activo');
 INSERT INTO USUARIO VALUES (2, 'estudiante','$2a$10$wokwoJb4vB6WlEhgLtlKReOqjUFBAiJDo9PIslIsgOMfUezpXs1bW',2, 'Activo');
@@ -913,7 +639,7 @@ INSERT INTO USUARIO VALUES (18, 'USERNAME18','PASSOWORD18',18, 'Activo');
 INSERT INTO USUARIO VALUES (19, 'USERNAME19','PASSOWORD19',19, 'Activo');
 INSERT INTO USUARIO VALUES (20, 'USERNAME20','PASSOWORD20',20, 'Activo');
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO RECURSO VALUES (1, 'RECURSOX','URL','Activo',3);
 INSERT INTO RECURSO VALUES (2, 'RECURSOX','URL','Activo',4);
@@ -927,7 +653,7 @@ INSERT INTO RECURSO VALUES (9, 'RECURSOX','URL','Activo',26);
 INSERT INTO RECURSO VALUES (10, 'RECURSOX','URL','Activo',33);
 INSERT INTO RECURSO VALUES (11, 'RECURSOX','URL','Activo',89);
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO ROL_PROYECTO VALUES (1,5,'Descripcion 1',1,1,'Activo');
 INSERT INTO ROL_PROYECTO VALUES (2,5,'Descripcion 1',2,2,'Activo');
@@ -940,7 +666,7 @@ INSERT INTO ROL_PROYECTO VALUES (8, 5, 'Descripción 3', 6, 5, 'Activo');
 INSERT INTO ROL_PROYECTO VALUES (9, 5, 'Descripción 4', 6, 6, 'Activo');
 INSERT INTO ROL_PROYECTO VALUES (10, 5, 'Descripción 5', 1, 1, 'Activo');
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO ROL_PROYECTO_ENCARGADO VALUES (1,'Activo',1,1);
 INSERT INTO ROL_PROYECTO_ENCARGADO VALUES (2,'Activo',2,2);
@@ -953,7 +679,7 @@ INSERT INTO ROL_PROYECTO_ENCARGADO VALUES (8,'Activo',8,8);
 INSERT INTO ROL_PROYECTO_ENCARGADO VALUES (9,'Activo',9,9);
 INSERT INTO ROL_PROYECTO_ENCARGADO VALUES (10,'Activo',10,10);
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -970,7 +696,7 @@ INSERT INTO ACTIVIDAD_PARTICIPANTE VALUES (10,'Activo',10,10);
 
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 INSERT INTO ROL_SISTEMA_ACCESOS VALUES (1,2,null,'Activo');
@@ -985,7 +711,7 @@ INSERT INTO ROL_SISTEMA_ACCESOS VALUES (9,1,null,'Activo');
 INSERT INTO ROL_SISTEMA_ACCESOS VALUES (10,10,null,'Activo');
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1000,7 +726,7 @@ INSERT INTO ESTUDIANTE VALUES (8,8,'220134',24,'Activo',4,1);
 INSERT INTO ESTUDIANTE VALUES (9,9,'220134',24,'Activo',4,4);
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 INSERT INTO ENCARGADO VALUES (1,'CARLOS','ROL','ACTIVO',1);
@@ -1020,7 +746,7 @@ INSERT INTO ENCARGADO VALUES (14,'CARLOS','ROL','ACTIVO',9);
 INSERT INTO ENCARGADO VALUES (15,'CARLOS','ROL','ACTIVO',9);
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1038,7 +764,7 @@ INSERT INTO PARTICIPANTE VALUES ('ACTIVO', 10, 3, 4, 5, 6, 7, 8);
 
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1059,7 +785,7 @@ INSERT INTO ACTIVIDAD (id_ACTIVIDAD, NOMBRE, FECHA, ESTADO, id_PROYECTO, id_ENCA
 INSERT INTO ACTIVIDAD (id_ACTIVIDAD, NOMBRE, FECHA, ESTADO, id_PROYECTO, id_ENCARGADO) VALUES (14, 'Torneo de Ajedrez', TO_DATE('2024-01-05', 'YYYY-MM-DD'), 'Activa', 14, 14);
 INSERT INTO ACTIVIDAD (id_ACTIVIDAD, NOMBRE, FECHA, ESTADO, id_PROYECTO, id_ENCARGADO) VALUES (15, 'Conferencia de Ciencia e Innovación', TO_DATE('2024-01-10', 'YYYY-MM-DD'), 'Activa', 15, 15);
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 -- Ejemplos de inserción en la tabla PERSONA
@@ -1096,15 +822,15 @@ INSERT INTO PERSONA (id_PERSONA, NOMBRE, ESTADO, DNI, id_ROL_SISTEMA) VALUES (30
 
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
-INSERT INTO ROL_SISTEMA VALUES (1,'Coordinador','Activo',1);
-INSERT INTO ROL_SISTEMA VALUES (2,'Coordinador','Activo',2);
-INSERT INTO ROL_SISTEMA VALUES (3,'Coordinador','Activo',3);
-INSERT INTO ROL_SISTEMA VALUES (4,'Coordinador','Activo',4);
-INSERT INTO ROL_SISTEMA VALUES (5,'Coordinador','Activo',5);
+INSERT INTO ROL_SISTEMA VALUES (1,'ADMIN','Activo',1);
+INSERT INTO ROL_SISTEMA VALUES (2,'ESTUDIANTE','Activo',2);
+INSERT INTO ROL_SISTEMA VALUES (3,'COORDINADOR','Activo',3);
+INSERT INTO ROL_SISTEMA VALUES (4,'DOCENTE','Activo',4);
+INSERT INTO ROL_SISTEMA VALUES (5,'DIRECTOR','Activo',5);
 INSERT INTO ROL_SISTEMA VALUES (6,'Coordinador','Activo',6);
 INSERT INTO ROL_SISTEMA VALUES (7,'Coordinador','Activo',7);
 INSERT INTO ROL_SISTEMA VALUES (8,'Coordinador','Activo',8);
@@ -1113,137 +839,150 @@ INSERT INTO ROL_SISTEMA VALUES (10,'Coordinador','Activo',10);
 
 
 
-//----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------Termina-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
 VALUES (1, 'Gestionar proyecto', 'home/modulo/1', NULL, 'ACTIVO');
 
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
 VALUES (2, 'Ejecutar proyecto', 'home/modulo/2', NULL, 'ACTIVO');
 
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
 VALUES (3, 'Consultar horas', 'home/modulo/3', NULL, 'ACTIVO');
 
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (4, 'Gestionar usuario', 'home/modulo/4', NULL, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (5, 'Plantilla', 'home/modulo/1/plantilla', 1, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (6, 'Proyecto', 'home/modulo/1/proyecto', 1, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (7, 'Proyecto', 'home/modulo/2/proyecto', 2, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (8, 'Horas del alumno', 'home/modulo/3/horas', 3, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (10, 'Agregar proyecto', 'home/modulo/1/agregar-proyecto', 1, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (11, 'Agregar plantilla', 'home/modulo/1/agregar-plantilla', 1, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (12, 'General', 'home/modulo/1/agregar-proyecto/general', 10, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (13, 'Roles', 'home/modulo/1/agregar-proyecto/roles', 10, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (14, 'Actividad', 'home/modulo/1/agregar-proyecto/actividad', 10, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (15, 'Participante', 'home/modulo/1/agregar-proyecto/participante', 10, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (16, 'Encargado', 'home/modulo/1/agregar-proyecto/encargado', 10, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (17, 'General', 'home/modulo/1/proyecto/editar/general', 6, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (18, 'Roles', 'home/modulo/1/proyecto/editar/roles', 6, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (19, 'Actividad', 'home/modulo/1/proyecto/editar/actividad', 6, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (20, 'Participante', 'home/modulo/1/proyecto/editar/participante', 6, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (21, 'Encargado', 'home/modulo/1/proyecto/editar/encargado', 6, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (22, 'GRUPOS', 'home/modulo/2/lista-proyecto/proyecto/grupos', 7, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (23, 'ACTIVIDADES', 'home/modulo/2/lista-proyecto/proyecto/actividades', 7, 'ACTIVO');
-
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (24,'Seguimiento', 'home/modulo/2/lista-proyecto/proyecto/seguimiento', 7, 'ACTIVO');
-
-
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (25, 'Asignar-Horas', 'home/modulo/2/lista-proyecto/proyecto/asignar-horas', 7, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (26, 'Informe-Final', 'home/modulo/2/lista-proyecto/proyecto/informe-final', 7, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (28, 'Horas detalle', 'home/modulo/3/horas-detalles', 3, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (30, 'Asignar coordinador', 'home/modulo/4/asignar-coordinador', 4, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (31, 'Crear roles del sistema', 'home/modulo/4/crear-roles-sistema', 4, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (32,'Listar roles del sistema', 'home/modulo/4/listar-roles-sistema', 4, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (33, 'Seleccionar privilegios', 'home/modulo/4/asignar-privilegios/seleccionar-privilegios', 9, 'ACTIVO');
-
-INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
-VALUES (34, 'Asignar privilegios', 'home/modulo/4/asignar-privilegios', 4, 'ACTIVO');
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (4, 'Seguridad', 'home/modulo/4', NULL, 'ACTIVO');
 
 INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
-VALUES (35, 'Configuracion', 'home/modulo/5', NULL, 'ACTIVO');
+VALUES (5, 'Configuración', 'home/modulo/5', NULL, 'ACTIVO');
+
+-- Rutas Hijas del primer Módulo
 
 INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
-VALUES (36, 'Mantener rol negocio', 'home/modulo/5/rol-negocio', 22, 'ACTIVO');
+VALUES (6, 'Listar Plantillas', 'home/modulo/1/listar-plantilla', 1, 'ACTIVO');
 
 INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
-VALUES (37, 'Mantener estado', 'home/modulo/5/estado', 22, 'ACTIVO');
+VALUES (7, 'Agregar plantilla', 'home/modulo/1/agregar-plantilla', 1, 'ACTIVO');
 
 INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
-VALUES (38, 'Mantener curso articulado', 'home/modulo/5/curso-articulado', 22, 'ACTIVO');
+VALUES (8, 'Listar Proyectos', 'home/modulo/1/listar-proyectos', 1, 'ACTIVO');
 
 INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
-VALUES (39, 'Mantener semestre', 'home/modulo/5/semestre', 22, 'ACTIVO');
+VALUES (9, 'Agregar proyecto', 'home/modulo/1/agregar-proyecto', 1, 'ACTIVO');
+
+-- Rutas Hijas de Listar Proyectos
 
 INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
-VALUES (40, 'Mantener facultad', 'home/modulo/5/facultad', 22, 'ACTIVO');
+VALUES (10, 'General', 'home/modulo/1/listar-proyectos/editar/general', 8, 'ACTIVO');
 
 INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
-VALUES (41, 'Mantener escuela', 'home/modulo/5/escuela', 22, 'ACTIVO');
+VALUES (11, 'Roles', 'home/modulo/1/listar-proyectos/editar/roles', 8, 'ACTIVO');
 
 INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
-VALUES (42, 'Mantener ciclo', 'home/modulo/5/ciclo', 22, 'ACTIVO');
+VALUES (12, 'Actividad', 'home/modulo/1/listar-proyectos/editar/actividad', 8, 'ACTIVO');
 
 INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
-VALUES (43, 'Mantener tipo convenio', 'home/modulo/5/tipo-convenio', 22, 'ACTIVO');
+VALUES (13, 'Participante', 'home/modulo/1/listar-proyectos/editar/participante', 8, 'ACTIVO');
 
 INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
-VALUES (44, 'Mantener docente', 'home/modulo/5/docente', 22, 'ACTIVO');
+VALUES (14, 'Encargado', 'home/modulo/1/listar-proyectos/editar/encargado', 8, 'ACTIVO');
+
+-- Rutas Hijas de Agregar Proyecto
 
 INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
-VALUES (45, 'Mantener usuario', 'home/modulo/5/usuario', 22, 'ACTIVO');
+VALUES (15, 'Datos Generales', 'home/modulo/1/agregar-proyecto/general', 9, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (16, 'Roles', 'home/modulo/1/agregar-proyecto/roles', 9, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (17, 'Actividad', 'home/modulo/1/agregar-proyecto/actividad', 9, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (18, 'Participante', 'home/modulo/1/agregar-proyecto/participante', 9, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (19, 'Encargado', 'home/modulo/1/agregar-proyecto/encargado', 9, 'ACTIVO');
+
+---------------------
+-- Rutas Hijas del Segundo Módulo
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (20, 'Proyecto', 'home/modulo/2/lista-proyecto', 2, 'ACTIVO');
+
+-- Rutas Hijas de Proyectos
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (21, 'Grupos', 'home/modulo/2/lista-proyecto/proyecto/grupos', 20, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (22, 'Actividades', 'home/modulo/2/lista-proyecto/proyecto/actividades', 20, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (23, 'Seguimiento', 'home/modulo/2/lista-proyecto/proyecto/seguimiento', 20, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (24, 'Asignar-Horas', 'home/modulo/2/lista-proyecto/proyecto/asignar-horas', 20, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (25, 'Informe-Final', 'home/modulo/2/lista-proyecto/proyecto/informe-final', 20, 'ACTIVO');
+
+-- Rutas del Módulo 3
+/*
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (26, 'Horas del alumno', 'home/modulo/3/horas', 3, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
+VALUES (27, 'Horas detalle', 'home/modulo/3/horas-detalles', 3, 'ACTIVO');
+
+--Rutas del módulo 4
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
+VALUES (28, 'Asignar coordinador', 'home/modulo/4/asignar-coordinador', 4, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
+VALUES (29, 'Crear roles del sistema', 'home/modulo/4/crear-roles-sistema', 4, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
+VALUES (30,'Listar roles del sistema', 'home/modulo/4/listar-roles-sistema', 4, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
+VALUES (31, 'Seleccionar privilegios', 'home/modulo/4/asignar-privilegios/seleccionar-privilegios', 9, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE,ESTADO)
+VALUES (32, 'Asignar privilegios', 'home/modulo/4/asignar-privilegios', 4, 'ACTIVO');  
+
+--Rutas del módulo 5
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (33, 'Mantener rol negocio', 'home/modulo/5/rol-negocio', 22, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (34, 'Mantener estado', 'home/modulo/5/estado', 22, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (35, 'Mantener curso articulado', 'home/modulo/5/curso-articulado', 22, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (36, 'Mantener semestre', 'home/modulo/5/semestre', 22, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (37, 'Mantener facultad', 'home/modulo/5/facultad', 22, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (38, 'Mantener escuela', 'home/modulo/5/escuela', 22, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (39, 'Mantener ciclo', 'home/modulo/5/ciclo', 22, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (40, 'Mantener tipo convenio', 'home/modulo/5/tipo-convenio', 22, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (41, 'Mantener docente', 'home/modulo/5/docente', 22, 'ACTIVO');
+
+INSERT INTO ACCESOS (ID_ACCESOS, NOMBRE, URL, ID_ACCESOS_PADRE, ESTADO)
+VALUES (42, 'Mantener usuario', 'home/modulo/5/usuario', 22, 'ACTIVO');
 
 
 insert into USUARIO_ACCESOS VALUES (1,1,1);
@@ -1251,6 +990,13 @@ insert into USUARIO_ACCESOS VALUES (2,2,2);
 insert into USUARIO_ACCESOS VALUES (3,3,3);
 insert into USUARIO_ACCESOS VALUES (4,4,4);
 insert into USUARIO_ACCESOS VALUES (5,5,5);
+
+
+INSERT INTO USUARIO_ROL_SISTEMA VALUES (1, 1, 1);
+INSERT INTO USUARIO_ROL_SISTEMA VALUES (2, 2, 2);
+INSERT INTO USUARIO_ROL_SISTEMA VALUES (3, 3, 3);
+INSERT INTO USUARIO_ROL_SISTEMA VALUES (4, 4, 4);
+INSERT INTO USUARIO_ROL_SISTEMA VALUES (5, 5, 5);
 
 
 ALTER TABLE PROYECTO
