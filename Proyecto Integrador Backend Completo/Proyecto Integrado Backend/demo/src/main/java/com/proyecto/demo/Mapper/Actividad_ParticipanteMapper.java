@@ -15,6 +15,7 @@ public class Actividad_ParticipanteMapper {
        Actividad_ParticipanteDTO actividad_ParticipanteDTO = new Actividad_ParticipanteDTO();
 
        actividad_ParticipanteDTO.setID_ACTIVIDAD_PARTICIPANTE(actividad_Participante.getID_ACTIVIDAD_PARTICIPANTE());
+       actividad_ParticipanteDTO.setAsistencia(actividad_Participante.isASISTENCIA());
 
 //--------------------------------------- IDS QUE JALA ---------------------------------//
  
@@ -50,7 +51,7 @@ public class Actividad_ParticipanteMapper {
 
         Actividad_Participante actividad_Participante = new Actividad_Participante();
         actividad_Participante.setID_ACTIVIDAD_PARTICIPANTE(actividad_ParticipanteDTO.getID_ACTIVIDAD_PARTICIPANTE());
-
+         actividad_Participante.setASISTENCIA(actividad_ParticipanteDTO.isAsistencia());
 
     //Los codigos de abajo son para la ocacion de Editar porque cuando agregue un Proyecto
     //Sino se sube algun dato, esto lo toma como null,

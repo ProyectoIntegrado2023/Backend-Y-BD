@@ -12,6 +12,8 @@ import com.proyecto.demo.DTOPersonalizados.ProyectoPersonalizadoDTO;
 @Data
 public class ParticipanteDTO {
     private int ID_PARTICIPANTE;
+    private int horas;
+
 
 
 //-----------------------------------------------------FKS

@@ -16,5 +16,8 @@ public interface UsuarioRepositorySeguridad extends JpaRepository<Usuario, Integ
 
     @Query("select u from Usuario u where u.USERNAME = ?1")
     Optional<Usuario> getUSERNAME(String username);
+
+    boolean existsByUSERNAME(String username);
+
    
 }

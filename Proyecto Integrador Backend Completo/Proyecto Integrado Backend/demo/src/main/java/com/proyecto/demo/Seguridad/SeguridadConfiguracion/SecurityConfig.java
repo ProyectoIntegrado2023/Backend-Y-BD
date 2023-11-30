@@ -49,6 +49,7 @@ public class SecurityConfig {
                             )
                             .authorizeHttpRequests(
                                 auth -> {
+                                    auth.requestMatchers("/login").permitAll();
                                     auth.anyRequest().authenticated();
                                 }
                             )

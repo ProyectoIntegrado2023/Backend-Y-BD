@@ -92,6 +92,7 @@ public class ServiceImplParticipante implements ServiceParticipante {
     public ParticipanteDTO update(int id, ParticipanteDTO participanteDTO) {
         Participante existingVar = repositoryParticipante.findById(id)
         .orElseThrow(() -> new PropertyNotFoundException("Participante no encontrado"));
+        existingVar.setHoras(participanteDTO.getHoras());
 
 //Lo de Abajo Son para editar a los Ids que Jala, al momento de agregar si no envia alguna solicitud
 //lo capta como null, para despues editarlo

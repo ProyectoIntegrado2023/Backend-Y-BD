@@ -39,6 +39,10 @@ public class Participante {
     private int ID_PARTICIPANTE;
 
 
+    @Column(name = "horas")
+    private int horas;
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ROL_SISTEMA")
     private Rol_Sistema rol_sistema;

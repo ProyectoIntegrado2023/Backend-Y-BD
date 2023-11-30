@@ -26,6 +26,7 @@ public class ParticipanteMapper {
   public static ParticipanteDTO DatosAlDTO(Participante participante) {
     ParticipanteDTO participanteDTO = new ParticipanteDTO();
     participanteDTO.setID_PARTICIPANTE(participante.getID_PARTICIPANTE());
+    participanteDTO.setHoras(participante.getHoras());
 
         //--------------------------------------- IDS QUE JALA ---------------------------------//
  
@@ -118,6 +119,7 @@ public class ParticipanteMapper {
     public static Participante DatosAlaEntidad(ParticipanteDTO participanteDTO) {
       Participante participante = new Participante();
       participante.setID_PARTICIPANTE(participanteDTO.getID_PARTICIPANTE());
+      participante.setHoras(participanteDTO.getHoras());
 
 
     //Los codigos de abajo son para la ocacion de Editar porque cuando agregue un Proyecto

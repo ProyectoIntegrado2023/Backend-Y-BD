@@ -65,6 +65,7 @@ public class ServiceImplActividad_Participante implements ServiceActividad_Parti
     public Actividad_ParticipanteDTO update(int id, Actividad_ParticipanteDTO actividad_ParticipanteDTO) {
         Actividad_Participante existingVar = repositoryActividad_Participante.findById(id)
         .orElseThrow(() -> new PropertyNotFoundException("Actividad_Participante no encontrado"));
+        existingVar.setASISTENCIA(actividad_ParticipanteDTO.isAsistencia());
 
 
           //Lo de Abajo Son para editar a los Ids que Jala, al momento de agregar si no envia alguna solicitud

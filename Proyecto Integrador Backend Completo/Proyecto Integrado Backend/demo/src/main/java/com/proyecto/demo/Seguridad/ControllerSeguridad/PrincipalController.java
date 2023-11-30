@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,37 +36,31 @@ public class PrincipalController {
 
 
 
-    @PostMapping("/crear")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> createUser(@Valid @RequestBody  CreateUserDTO createUserDTO){
-
-        Set<Rol_Sistema> roles = createUserDTO.getRoles().stream()
-                                .map(role -> Rol_Sistema.builder()
-                                .NOMBRE(ERole.valueOf(role))
-                                .build())
-                                .collect(Collectors.toSet());
-        
-
-
-
-        Usuario usuario = Usuario.builder()
-                            .USERNAME(createUserDTO.getUsername())
-                            .PASSWORD(passwordEncoder.encode(createUserDTO.getPassword()))
-                            .roles(roles)
-                            .build();
-
-            usuarioRepositorySeguridad.save(usuario);
-
-            return ResponseEntity.ok(usuario);
-
-
-    } 
-    
-
-    @DeleteMapping("/eliminar")
-    public String deleteUser(@RequestParam String id){
-        usuarioRepositorySeguridad.deleteById(Integer.parseInt(id));
-        return "Eliminado pe causa el numero =  ".concat(id);
-
+ @PostMapping("/crear")
+@PreAuthorize("hasRole('ADMIN')")
+public ResponseEntity<?> createUser(@Valid @RequestBody CreateUserDTO createUserDTO) {
+    // Verificar si el nombre de usuario ya existe en la base de datos
+    if (usuarioRepositorySeguridad.existsByUSERNAME(createUserDTO.getUsername())) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("El nombre de usuario ya existe. Por favor, elige otro nombre reconcxatumale hdpolsd gaaaaaaaaa.");
     }
+
+    Set<Rol_Sistema> roles = createUserDTO.getRoles().stream()
+            .map(role -> Rol_Sistema.builder()
+                    .NOMBRE(ERole.valueOf(role))
+                    .build())
+            .collect(Collectors.toSet());
+
+    Usuario usuario = Usuario.builder()
+            .USERNAME(createUserDTO.getUsername())
+            .PASSWORD(passwordEncoder.encode(createUserDTO.getPassword()))
+            .roles(roles)
+            .build();
+
+    usuarioRepositorySeguridad.save(usuario);
+
+    return ResponseEntity.ok(usuario);
+}
+
 }

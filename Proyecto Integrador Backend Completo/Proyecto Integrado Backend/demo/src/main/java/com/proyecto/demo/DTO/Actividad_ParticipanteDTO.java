@@ -15,6 +15,7 @@ public class Actividad_ParticipanteDTO {
 
 
     private int ID_ACTIVIDAD_PARTICIPANTE;
+    private boolean asistencia;
 
 
     private ParticipantePDTO ID_PARTICIPANTE;

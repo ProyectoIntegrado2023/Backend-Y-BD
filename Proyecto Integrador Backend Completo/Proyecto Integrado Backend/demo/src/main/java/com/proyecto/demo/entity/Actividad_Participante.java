@@ -30,6 +30,9 @@ public class Actividad_Participante {
     @Column(name="ID_ACTIVIDAD_PARTICIPANTE")
     private int ID_ACTIVIDAD_PARTICIPANTE;
 
+    @Column(name="asistencia")
+    private boolean ASISTENCIA;
+
      @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PARTICIPANTE")
     private Participante participante;
